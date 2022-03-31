@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 enum StorageError: Error {
     case ValueNotFoundError
 }
 struct ConnectionKeys {
-    static let connDeviceUUID = ""
-    static let currDeviceName = ""
+    static let connDeviceUUID = "connDeviceUUID"
+    static let currDeviceName = "currDeviceName"
+    static let selectedPeerName = "selectedPeerName"
 }
 
 class ConnectionData {
@@ -43,6 +45,21 @@ class ConnectionData {
     func setDeviceName(name: String){
         defaults.set(name, forKey: ConnectionKeys.currDeviceName)
         defaults.synchronize()
+    }
+    
+    func setSelectedPeer(name: String){
+        defaults.set(name, forKey: ConnectionKeys.selectedPeerName)
+        defaults.synchronize()
+    }
+    
+    func getSelectedPeer() -> String {
+        if let peerName = defaults.string(forKey: ConnectionKeys.selectedPeerName) {
+           return peerName
+        } else {
+   
+           return ""
+        }
+        
     }
 
 }
