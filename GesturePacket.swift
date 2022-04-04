@@ -29,3 +29,9 @@ struct SingleTapDoubleClickPayload: Codable {
 
 struct DoubleTapPayload: Codable {
 }
+
+#if LATENCY_TEST_SUITE
+struct LatencyPayload: Codable {
+    var timestamp: TimeInterval!
+}
+#endif // LATENCY_TEST_SUITE
