@@ -30,6 +30,6 @@ public enum GestureType: Codable {
     case SingleTapDoubleClick
     case DoubleTap
 #if LATENCY_TEST_SUITE
-    case Timestamp
+    case Latency
 #endif // LATENCY_TEST_SUITE
 }

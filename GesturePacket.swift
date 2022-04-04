@@ -32,9 +32,6 @@ struct DoubleTapPayload: Codable {
 
 #if LATENCY_TEST_SUITE
 struct LatencyPayload: Codable {
-    /* Timestamp that the packet was sent at, for calculating latency */
-    var timestamp: TimeInterval!
-
     /* Used for checking for missed packets */
     var packetId: UInt64!
 }
