@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 enum StorageError: Error {
     case ValueNotFoundError
 }
