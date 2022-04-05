@@ -11,26 +11,26 @@ enum StorageError: Error {
     case ValueNotFoundError
 }
 struct ConnectionKeys {
-    static let connDeviceUUID = "connDeviceUUID"
     static let currDeviceName = "currDeviceName"
+    static let currDeviceUUID = "currDeviceUUID"
     static let selectedPeerName = "selectedPeerName"
 }
 
 class ConnectionData {
     let defaults = UserDefaults.standard
     
-    func setSelectedDeviceUUID(uuid: String){
-        defaults.set(uuid, forKey: ConnectionKeys.connDeviceUUID)
+    
+    func setCurrentDeviceUUID(uuid: String){
+        defaults.set(uuid, forKey: ConnectionKeys.currDeviceUUID)
         defaults.synchronize()
     }
     
-    func getSelectedDeviceUUID() -> String {
-        if let deviceUUID = defaults.string(forKey: ConnectionKeys.connDeviceUUID) {
-           return deviceUUID
+    func getCurrentDeviceUUID() -> String{
+        if let currUUID = defaults.string(forKey: ConnectionKeys.currDeviceUUID) {
+           return currUUID
         } else {
             return ""
         }
-        
     }
     
     func getDeviceName() -> String{
@@ -52,9 +52,14 @@ class ConnectionData {
         defaults.synchronize()
     }
     
-    func getSelectedPeer() -> String {
+    func getSelectedPeer(formatString: Bool = false) -> String {
+        
         if let peerName = defaults.string(forKey: ConnectionKeys.selectedPeerName) {
-           return peerName
+            if (formatString){
+                return peerName.components(separatedBy: "|")[0]
+            } else {
+                return peerName
+            }
         } else {
    
            return ""
