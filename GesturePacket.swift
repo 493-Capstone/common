@@ -5,6 +5,13 @@
 //  Created by Hudson Shykowski on 2022-03-18.
 //
 
+/**
+ * Gesture packet type and gesture payload types. Encoded and sent by the iOS device, decoded and used to
+ * generate mouse events by the MacOS device.
+ *
+ * Required for gesture recognition functional requirements (FR5-FR10)
+ */
+
 import Foundation
 
 struct GesturePacket: Codable {
