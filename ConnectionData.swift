@@ -5,11 +5,14 @@
 //  Created by Alireza Azimi on 2022-03-13.
 //
 
+/**
+ * Common class for storing and retrieving connectivity information from the application database.
+ *
+ * Required for connectivity functional requirements (FR1-FR4)
+ */
+
 import Foundation
-import MultipeerConnectivity
-enum StorageError: Error {
-    case ValueNotFoundError
-}
+
 struct ConnectionKeys {
     static let currDeviceName = "currDeviceName"
     static let currDeviceUUID = "currDeviceUUID"
@@ -19,8 +22,7 @@ struct ConnectionKeys {
 class ConnectionData {
     let defaults = UserDefaults.standard
     
-    
-    func setCurrentDeviceUUID(uuid: String){
+    func setCurrentDeviceUUID(uuid: String) {
         defaults.set(uuid, forKey: ConnectionKeys.currDeviceUUID)
         defaults.synchronize()
     }
@@ -37,17 +39,16 @@ class ConnectionData {
         if let deviceName = defaults.string(forKey: ConnectionKeys.currDeviceName) {
            return deviceName
         } else {
-   
            return ""
         }
     }
     
-    func setDeviceName(name: String){
+    func setDeviceName(name: String) {
         defaults.set(name, forKey: ConnectionKeys.currDeviceName)
         defaults.synchronize()
     }
     
-    func setSelectedPeer(name: String){
+    func setSelectedPeer(name: String) {
         defaults.set(name, forKey: ConnectionKeys.selectedPeerName)
         defaults.synchronize()
     }
@@ -61,10 +62,7 @@ class ConnectionData {
                 return peerName
             }
         } else {
-   
            return ""
         }
-        
     }
-
 }
